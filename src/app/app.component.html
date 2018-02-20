@@ -1,20 +1,35 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<form [formGroup]="userForm">
+  <!-- Prvi nivo -->
+  <div formArrayName="children">
+    <div *ngFor="let user of userForm.controls['children'].controls; let i=index" [formGroupName]="i">
+      <h1>User</h1>
+      <label>{{i+1}}. Name:</label>
+      <input formControlName="name">
 
+      <!-- Drugi nivo -->
+      <div *ngIf="user.value.children && user.value.children.length">
+        <h2>Children</h2>
+        <div formArrayName="children">
+            <div *ngFor="let child of user.controls['children'].controls; let j=index" [formGroupName]="j">
+                <label>{{i+1}}.{{j+1}}. Name:</label>
+                <input formControlName="name">
+
+                <!-- Treci nivo -->
+                <div *ngIf="child.value.children && user.value.children.length">
+                  <h3>Grandchildren</h3>                  
+                  <div formArrayName="children">
+                    <div *ngFor="let grandChild of child.controls['children'].controls; let k=index;" [formGroupName]="k">
+                      <label>{{i+1}}.{{j+1}}.{{k+1}} Name:</label>
+                      <input formControlName="name">
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<br> <br>
+{{ userForm.value.users | json }}

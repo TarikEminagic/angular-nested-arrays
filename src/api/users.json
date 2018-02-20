@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Nivo1-User1",
+    "children": [
+      {
+        "id": 3,
+        "name": "Nivo2-User1.1"
+      },
+      {
+        "id": 4,
+        "name": "Nivo2-User1.2",
+        "children": [
+          {
+            "id": 5,
+            "name": "Nivo3-User1.2.1"
+          },
+          {
+            "id": 6,
+            "name": "Nivo3-User1.2.2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Nivo1-User2"
+  }
+]
