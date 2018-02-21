@@ -1,4 +1,7 @@
 <user-form [users]="usersData" (onSave)="saveChanges($event)"></user-form>
 
 <br> <br>
-{{usersData | json}}
+<div>
+    <div>Component value</div>
+    <div>{{usersData | json}}</div>
+</div>
