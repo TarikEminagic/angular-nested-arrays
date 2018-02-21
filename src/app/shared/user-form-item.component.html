@@ -1,0 +1,17 @@
+<div [formGroup]="parent">
+    <div [formArrayName]="arrayName">
+        <div *ngFor="let child of parent.controls[arrayName].controls; let i=index" [formGroupName]="i">
+            <div class="margin-bottom">
+                <label>Name:</label>
+                <input formControlName="name">
+            </div>
+
+            <div class="margin-left">
+                    <user-form-item [parent]="child" 
+                        [arrayName]="arrayName" 
+                        *ngIf="child.value[arrayName] && child.value[arrayName].length">
+                    </user-form-item>
+            </div>
+        </div>
+    </div>
+</div>

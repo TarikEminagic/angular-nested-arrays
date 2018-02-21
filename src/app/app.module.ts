@@ -5,11 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { UserService } from './services/user.service';
+import { UserFormControl } from './shared/user-form.component';
+import { UserFromItemComponent } from './shared/user-form-item.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserFormControl,
+    UserFromItemComponent
   ],
   imports: [
     BrowserModule,

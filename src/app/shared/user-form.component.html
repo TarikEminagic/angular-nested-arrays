@@ -1,0 +1,18 @@
+<form [formGroup]="userForm">
+    <user-form-item [parent]="userForm" 
+                    [arrayName]="'children'">
+    </user-form-item>
+</form>
+<ng-template #elseBlock>
+    No Users
+</ng-template>
+
+<br> <br>
+<div>
+    <div>Form value:</div>
+    <div>{{userForm.value.children | json}}</div>
+</div>
+<br> <br>
+
+<button (click)="save()">Save</button>
+<button (click)="ngOnChanges()">Reset</button>
